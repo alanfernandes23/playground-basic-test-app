@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-patient',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientComponent implements OnInit {
 
-  constructor() { }
+  patientTable = [];
+
+  constructor(private patientService: PatientService) { }
 
   ngOnInit(): void {
   }
+
+
+  patients$ = this.patientService.patients$;
+  
+  
 
 }
