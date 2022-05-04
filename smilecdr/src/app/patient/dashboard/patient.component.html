@@ -1,3 +1,4 @@
+<p-card>
 <div *ngIf="patients$ | async as patients" class="card">
     <p-table responsiveLayout="stack" [value]="patients">
         <ng-template pTemplate="caption">
@@ -25,3 +26,4 @@
         </ng-template>
     </p-table>
 </div>
+</p-card>

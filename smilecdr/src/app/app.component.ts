@@ -18,6 +18,10 @@ export class AppComponent {
         {
             label: 'Patient',
             routerLink: ['/patient']
+        },
+        {
+          label: 'Generate Questionnaire',
+          routerLink: ['/questionnaireedit']
         }
     ];
 }
