@@ -11,7 +11,9 @@ import { Patient, RootObject } from '../interfaces/patient';
 
 export class PatientService {
 
-  patientUrl = 'https://try.smilecdr.com/baseR4/Patient?_format=json';
+  // TO DO  check why sort URL doesn't return values in the ascending order
+  // patientUrl = 'https://try.smilecdr.com/baseR4/Patient?_format=json';
+  patientUrl = 'https://try.smilecdr.com/baseR4/Patient?_sort:patient:resource:name=+given';
 
   constructor(private http: HttpClient) { }
 

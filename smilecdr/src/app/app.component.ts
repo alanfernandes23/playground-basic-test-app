@@ -16,12 +16,12 @@ export class AppComponent {
   ngOnInit() {
     this.items = [
         {
-            label: 'Patient',
-            routerLink: ['/patient']
+          label: 'Generate Questionnaire',
+          routerLink: ['/home']
         },
         {
-          label: 'Generate Questionnaire',
-          routerLink: ['/questionnaireedit']
+            label: 'Patient',
+            routerLink: ['/patient']
         }
     ];
 }

@@ -16,7 +16,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'patient', component: PatientComponent},
-  { path: 'questionnaireedit', component: QuestionnaireEditComponent},
+  { path: 'questionnaireedit', component: HomeComponent},
   { path: 'questionnairedisplay', component: QuestionnaireDisplayComponent},
   { path: 'home', component: HomeComponent}
 ];

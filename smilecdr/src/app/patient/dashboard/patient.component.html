@@ -1,8 +1,8 @@
 <p-card>
 <div *ngIf="patients$ | async as patients" class="card">
-    <p-table responsiveLayout="stack" [value]="patients">
+    <p-table responsiveLayout="scroll" [value]="patients">
         <ng-template pTemplate="caption">
-            Stack
+            Patient Dashboard
         </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
