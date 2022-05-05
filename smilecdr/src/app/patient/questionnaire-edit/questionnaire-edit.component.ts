@@ -1,58 +1,72 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { FormArray } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JsonFormData, JsonFormItem, Option } from 'src/app/interfaces/questionnaire-form';
 
 @Component({
   selector: 'app-questionnaire-edit',
   templateUrl: './questionnaire-edit.component.html',
-  styleUrls: ['./questionnaire-edit.component.css']
+  styleUrls: ['./questionnaire-edit.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuestionnaireEditComponent implements OnInit {
-
-    questionnaireForm = this.fb.group({
-      allergies: [null, Validators.required],
-      gender: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      countryOfBirth: ['', Validators.required],
-      maritalStatus: ['', Validators.required],
-      smoke: [null, Validators.required],
-      alcohol: [null, Validators.required],
-      aliases: this.fb.array([
-        this.fb.control('')
-      ])
-    });
-
-  formSubmitted: boolean = false;
+export class QuestionnaireEditComponent implements OnChanges {
+  @Input() jsonFormData: JsonFormData;
   currentDate = new Date();
+  display: boolean = false;
 
-  genderList = [
-    {label: "Male", value: "Male"},
-    {label: "Female", value: "Female"},
-    {label: "Other", value: "Other"},
-  ];
-  maritalStatusList = [
-    {label: "Married", value: "Married"},
-    {label: "Single", value: "Single"},
-    {label: "Divorced", value: "Divorced"},
-  ];
+  public questionnaireForm: FormGroup = this.fb.group({});
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges){
+    if (!changes.jsonFormData.firstChange) {
+      this.createForm(this.jsonFormData.item)
+    }
   }
 
-  onSubmit(){
-    console.log(this.questionnaireForm.value);
-    this.formSubmitted = true;
+  createForm(controls: JsonFormItem[]) {
+    for(const control of controls) {
+      const addValidators = [];
+
+      switch (control.type) {
+        case 'boolean':
+          addValidators.push(Validators.required);
+          break;
+        case 'choice':
+          addValidators.push(Validators.required);
+          break;
+        case 'date':
+          addValidators.push(Validators.required);
+          break;
+        case 'string':
+          addValidators.push(Validators.required);
+          addValidators.push(Validators.pattern('[a-zA-Z]'));
+          break;
+        default:
+          break;
+      }
+
+      this.questionnaireForm.addControl(
+        control.linkId,
+        this.fb.control('', addValidators));
+    }
   }
 
-  get aliases() {
-    return this.questionnaireForm.get('aliases') as FormArray;
+  get getUrl(){
+    return this.questionnaireForm.controls;
   }
 
-  addAlias() {
-    this.aliases.push(this.fb.control(''));
+  // TODO fix bug - option has to be clicked twice in order to be selected
+  getOptions(options: Option[]){
+    let ddOptions= [];
+    ddOptions.push({label: 'Select', value: null});
+    for(const option of options) {
+        ddOptions.push({label: `${option.valueCoding.display}`, value: `${option.valueCoding.code}`});
+    }
+    return ddOptions;
+  }
+
+  onSubmit() {
+    this.display = true;
   }
 
 }

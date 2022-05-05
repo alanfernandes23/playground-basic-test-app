@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QuestionnaireEditComponent } from '../patient/questionnaire-edit/questionnaire-edit.component';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { PatientComponent } from './patient/dashboard/patient.component';
 
 import {MenubarModule} from 'primeng/menubar';
 import {TableModule} from 'primeng/table';
@@ -17,22 +17,20 @@ import {CalendarModule} from 'primeng/calendar';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
+import {DialogModule} from 'primeng/dialog';
 
-import { QuestionnaireDisplayComponent } from './patient/questionnaire-display/questionnaire-display.component';
-import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PatientComponent,
-    QuestionnaireDisplayComponent,
+    HomeComponent,
+    QuestionnaireEditComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+    CommonModule,
+    HomeRoutingModule,
     HttpClientModule,
-    AppRoutingModule,
     ReactiveFormsModule,
+    DropdownModule,
     MenubarModule,
     TableModule,
     RadioButtonModule,
@@ -41,10 +39,7 @@ import { HomeModule } from './home/home.module';
     CalendarModule,
     InputTextModule,
     ButtonModule,
-    DropdownModule,
-    HomeModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    DialogModule
+  ]
 })
-export class AppModule { }
+export class HomeModule { }

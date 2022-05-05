@@ -1,52 +1,60 @@
 <p-card>
-    <div class="p-d-flex p-shadow-1">
-        <div class="p-formgroup-inline" >
-            <form [formGroup]="questionnaireForm" (ngSubmit)="onSubmit()">
-            <h3>Do you have allergies?</h3>
-            <div class="p-field-checkbox">
-                <p-radioButton name="allergies" value="true" formControlName="allergies" label="Yes"></p-radioButton>
-            </div>
-            <div class="p-field-checkbox">
-                <p-radioButton name="allergies" value="false" formControlName="allergies" label="No"></p-radioButton>
-            </div>
+    <form [formGroup]="questionnaireForm" (ngSubmit)="onSubmit()">
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col-6 p-md-6" *ngFor="let control of jsonFormData?.item">
+                <h3>{{control.text}}</h3>
 
-            <h3>What is your gender?</h3>
-            <p-dropdown [options]="genderList" formControlName="gender" placeholder="Select" [required]="true"></p-dropdown>
-
-            <h3>What is your date of birth?</h3>
-            <p-calendar formControlName="dateOfBirth" dateFormat="yy/mm/dd" [maxDate]="currentDate" [required]="true"></p-calendar>
-
-            <h3>What is your country of birth?</h3>
-            <input type="text" pInputText formControlName="countryOfBirth" [required]="true"/>
-
-            <h3>What is your marital status? </h3>
-            <p-dropdown [options]="maritalStatusList" formControlName="maritalStatus" placeholder="Select" [required]="true"></p-dropdown>
-
-            <h3>Do you smoke?</h3>
-            <div class="p-field-checkbox">
-                <p-radioButton name="smoke" value="true" formControlName="smoke" label="Yes"></p-radioButton>
-            </div>
-            <div class="p-field-checkbox">
-                <p-radioButton name="smoke" value="false" formControlName="smoke" label="No"></p-radioButton>
-            </div>
-
-            <h3>Do you drink alchohol?</h3>
-            <div class="p-field-checkbox">
-                <p-radioButton name="alcohol" value="true" formControlName="alcohol" label="Yes"></p-radioButton>
-            </div>
-            <div class="p-field-checkbox">
-                <p-radioButton name="alcohol" value="false" formControlName="alcohol" label="No"></p-radioButton>
-            </div>
-
-            <div class="p-mt-4">
-                <p-button [disabled]="!questionnaireForm.valid" label="Submit" type="submit"></p-button>
-            </div>
-        </form>
-
-        <ng-template *ngIf="formSubmitted">
-            <p >Form Value: {{ questionnaireForm.value | json }}</p>
-        </ng-template>
+                <div class="p-col-6 p-md-6">
+                    <p-calendar 
+                    *ngIf="control.type === 'date'" 
+                    [formControlName]="control.linkId"
+                    [maxDate]="currentDate"
+                    [required]="true"
+                    ></p-calendar>
+                </div>
+                
         
+                <div *ngIf="control.type === 'choice'">
+                    <p-dropdown
+                    [options]="getOptions(control.option)"
+                    [formControlName]="control.linkId"
+                    [required]="true"
+                    ></p-dropdown>
+                </div>
+                
+                <div class="p-col-6 p-md-6">
+                    <input 
+                    *ngIf="control.type === 'string'"
+                    type="text" 
+                    pInputText 
+                    [formControlName]="control.linkId"
+                    [required]="true"
+                    />
+                </div>
+                
+
+                <div *ngIf="control.type === 'boolean'" class="p-formgroup-inline">
+                    <div class="p-field-checkbox">
+                        <p-radioButton value="true" [formControlName]="control.linkId" label="Yes"></p-radioButton>
+                    </div>
+                    <div class="p-field-checkbox">
+                        <p-radioButton value="false" [formControlName]="control.linkId" label="No"></p-radioButton>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-d-flex">
+                <p-button [disabled]="!questionnaireForm.valid" label="Submit" type="submit" ></p-button>
+            </div>
+
         </div>
-    </div>
+        
+        
+    </form>
 </p-card>
+
+<p-dialog header="Submitted Data" [(visible)]="display">
+    {{this.questionnaireForm.value | json}}
+</p-dialog>
+
