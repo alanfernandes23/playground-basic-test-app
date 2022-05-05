@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PatientComponent } from './patient/dashboard/patient.component';
-import { QuestionnaireDisplayComponent } from './patient/questionnaire-display/questionnaire-display.component';
-import { QuestionnaireEditComponent } from './patient/questionnaire-edit/questionnaire-edit.component';
 
 const routes: Routes = [
   {
@@ -17,7 +15,6 @@ const routes: Routes = [
   },
   { path: 'patient', component: PatientComponent},
   { path: 'questionnaireedit', component: HomeComponent},
-  { path: 'questionnairedisplay', component: QuestionnaireDisplayComponent},
   { path: 'home', component: HomeComponent}
 ];
 

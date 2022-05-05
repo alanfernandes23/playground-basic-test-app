@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges,} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JsonFormData, JsonFormItem, Option } from 'src/app/interfaces/questionnaire-form';
 
@@ -39,7 +39,6 @@ export class QuestionnaireEditComponent implements OnChanges {
           break;
         case 'string':
           addValidators.push(Validators.required);
-          addValidators.push(Validators.pattern('[a-zA-Z]'));
           break;
         default:
           break;
@@ -49,10 +48,6 @@ export class QuestionnaireEditComponent implements OnChanges {
         control.linkId,
         this.fb.control('', addValidators));
     }
-  }
-
-  get getUrl(){
-    return this.questionnaireForm.controls;
   }
 
   // TODO fix bug - option has to be clicked twice in order to be selected

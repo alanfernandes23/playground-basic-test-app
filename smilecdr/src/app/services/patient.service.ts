@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Patient, RootObject } from '../interfaces/patient';
 
 @Injectable({

@@ -18,14 +18,12 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
 
-import { QuestionnaireDisplayComponent } from './patient/questionnaire-display/questionnaire-display.component';
 import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientComponent,
-    QuestionnaireDisplayComponent,
   ],
   imports: [
     BrowserModule,
