@@ -4,21 +4,21 @@ This project is a skeleton project for querying data from the [Smile CDR Test Se
 
 ### Getting Started:
 
-* [ ] Take a few minutes to familiarize yourself with the [FHIR Standard](http://hl7.org/fhir/) for health data exchange. In particular, you might want to read the [Executive Summary](http://hl7.org/fhir/summary.html) and the [Developer Introduction](http://hl7.org/fhir/overview-dev.html)
+* [x] Take a few minutes to familiarize yourself with the [FHIR Standard](http://hl7.org/fhir/) for health data exchange. In particular, you might want to read the [Executive Summary](http://hl7.org/fhir/summary.html) and the [Developer Introduction](http://hl7.org/fhir/overview-dev.html)
 
-* [ ] Use whatever library & framework you're most comfortable with.
+* [x] Use whatever library & framework you're most comfortable with.
   
-* [ ] Create your own GitHub project and copy the contents of this repository into your own project.
+* [x] Create your own GitHub project and copy the contents of this repository into your own project.
 
-* [ ] **Please, do not fork this repo.** Create your own private GitHub repository to do your work in.
+* [x] **Please, do not fork this repo.** Create your own private GitHub repository to do your work in.
 
 ### Basic Tasks:
 
-* [ ] Create a patient view with patients fetched from `https://try.smilecdr.com/baseR4/Patient`. The patients should be sorted by name & birthdate (if a birthdate is in the record). 
+* [x] Create a patient view with patients fetched from `https://try.smilecdr.com/baseR4/Patient`. The patients should be sorted by name & birthdate (if a birthdate is in the record). 
 
-* [ ] Display the first & last names, birthdate, address, gender & phone number.
+* [x] Display the first & last names, birthdate, address, gender & phone number.
  
-* [ ] Ensure the table is responsive. Ensure there is proper error handling for missing elements in the data.
+* [x] Ensure the table is responsive. Ensure there is proper error handling for missing elements in the data.
 
 * [ ] Time the request. Output the time on the footer of the page in a human readable format.
 
@@ -28,11 +28,11 @@ This project is a skeleton project for querying data from the [Smile CDR Test Se
 
 * [ ] Apply validation to the inputs - the boxes cannot contain non-alphabetic characters.
 
-* [ ] Commit your work.
+* [x] Commit your work.
 
 ### Intermediate Tasks:
 
-* [ ] Generate a questionnaire view. In the view, _dynamically_ generate a form and capture the answer for the following questions :- 
+* [x] Generate a questionnaire view. In the view, _dynamically_ generate a form and capture the answer for the following questions :- 
 
     -    Do you have allergies? **Radio Button (True, False)**
     -    What is your gender? **Select (Male, Female, Other)**
@@ -42,10 +42,10 @@ This project is a skeleton project for querying data from the [Smile CDR Test Se
     -    Do you smoke? **Radio Button (True, False)**
     -    Do you drink alchohol? **Radio Button (True, False)**
 
-* [ ] Display the results of the form based on submit at the bottom of the page. 
+* [x] Display the results of the form based on submit at the bottom of the page. 
 
-* [ ] Commit your work.
+* [x] Commit your work.
 
-* [ ] **Bonus :-** If dynamic form is generated using the [`questionnaire.json` file](assets/questionnaire.json)  in the `assets` folder. The form should have validation applied to each input. 
+* [x] **Bonus :-** If dynamic form is generated using the [`questionnaire.json` file](assets/questionnaire.json)  in the `assets` folder. The form should have validation applied to each input. 
 
 * [ ] **Bonus :-** Using the results from the form, generate a [`QuestionnaireResponse`](https://www.hl7.org/fhir/questionnaireresponse.html). The `QuestionnaireResponse` should follow the structure outlined in the [Resource Content Section](https://www.hl7.org/fhir/questionnaireresponse.html#resource)
